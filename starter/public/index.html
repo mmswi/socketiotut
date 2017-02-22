@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>starter</title>
+  </head>
+  <body>
+    <h1>hello world</h1>
+  <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io('http://localhost:8080')
+
+        socket.on('message-from-server', (evt) => {
+            document.body.appendChild(document.createTextNode(evt.greeting))
+        })
+
+        setTimeout(() => {
+            socket.emit('message-from-client', {
+                greeting: 'Hello from the client'
+            })
+        }, 2000)
+    </script>
+  </body>
+</html>
